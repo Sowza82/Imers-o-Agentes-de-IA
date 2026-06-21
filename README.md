@@ -15,13 +15,13 @@ O objetivo é sair do uso de prompts simples e construir um agente que **racioci
 
 ## 🛠️ Stack utilizada
 
-| Ferramenta   | Função no projeto                                 |
-| ------------ | ------------------------------------------------- |
-| **Cohere**   | Modelo de linguagem (LLM) e geração de embeddings |
-| **Railway**  | Hospedagem em nuvem (banco de dados MySQL)        |
-| **n8n**      | Orquestração visual do fluxo do agente (low-code) |
-| **MySQL**    | Banco de dados estruturado de funcionários        |
-| **Telegram** | Interface de chat com o usuário final             |
+| Ferramenta | Função no projeto |
+|---|---|
+| **Cohere** | Modelo de linguagem (LLM) e geração de embeddings |
+| **Railway** | Hospedagem em nuvem (banco de dados MySQL) |
+| **n8n** | Orquestração visual do fluxo do agente (low-code) |
+| **MySQL** | Banco de dados estruturado de funcionários |
+| **Telegram** | Interface de chat com o usuário final |
 
 ## 🗂️ Estrutura do conteúdo
 
@@ -44,7 +44,7 @@ O objetivo é sair do uso de prompts simples e construir um agente que **racioci
 - Conta na [Cohere](https://cohere.com) com API Key gerada
 - Conta na [Railway](https://railway.com)
 - Bot criado no Telegram via [@BotFather](https://t.me/BotFather), com token salvo
-- Conta no [n8n](https://n8n.io) _(criar apenas no momento indicado na aula)_
+- Conta no [n8n](https://n8n.io) *(criar apenas no momento indicado na aula)*
 
 ## 🗄️ Banco de dados
 
@@ -143,6 +143,8 @@ Resposta enviada de volta ao Telegram
 
 ## 📎 Créditos
 
-Conteúdo baseado na Masterclass e Aulas 1–3 da **ONE & Alura| Imersão Agentes de IA**.
+Conteúdo baseado na Masterclass e Aulas 1–3 da **ONE | Imersão Agentes de IA**.
+Documentado por **Tatiane Souza**, com apoio do **Claude (Anthropic)** na escrita e estruturação da documentação.
 
-Documentado por **Tatiane Souza**.
+> ⚠️ **Aviso sobre os dados**
+> Todos os dados utilizados neste projeto (funcionários, e-mails, departamentos, saldos de férias, banco de horas, nome da empresa "ChocolaTech") são **fictícios** e foram criados exclusivamente para fins **educacionais**, como parte da Imersão Agentes de IA. Nenhuma informação real de pessoas ou empresas foi utilizada.
