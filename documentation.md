@@ -353,4 +353,4 @@ Esta seção reúne problemas comuns encontrados ao montar esse tipo de agente e
 
 ---
 
-*Documentado por Tatiane Santos Souza — Sowza.dev*
+*Documentado por Tatiane Souza*
