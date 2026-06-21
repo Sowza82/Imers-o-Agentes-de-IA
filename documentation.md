@@ -3,7 +3,7 @@
 
 **Construindo um Agente de IA com n8n, Cohere, MySQL e Telegram — passo a passo**
 
-Preparado por: Tatiane Souza — Sowza.dev
+Preparado por: Tatiane Souza 
 
 ---
 
