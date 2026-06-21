@@ -3,7 +3,7 @@
 
 **Construindo um Agente de IA com n8n, Cohere, MySQL e Telegram — passo a passo**
 
-Preparado por: Tatiane Souza 
+Preparado por: Tatiane Souza — Sowza.dev
 
 ---
 
@@ -127,6 +127,10 @@ Embeddings são representações numéricas (vetores) de um texto, que capturam 
 2. Envie uma pergunta relacionada ao conteúdo dos documentos carregados.
 3. Verifique se a resposta do agente reflete o conteúdo real da base de conhecimento, e não apenas conhecimento genérico.
 
+![Fluxo do agente com RAG, embeddings e Vector Store no n8n](imagens/aula01-fluxo-rag.png)
+
+![Teste do fluxo de agente conectado ao modelo, memória e Vector Store](imagens/aula01-teste-rag.png)
+
 > 💡 **Dica**
 > Sempre teste o fluxo de ingestão isoladamente antes de conectar o agente — assim fica mais fácil identificar se um erro está na leitura do documento, na geração dos embeddings ou na consulta do agente.
 
@@ -145,6 +149,8 @@ Dados não estruturados (textos, PDFs, manuais) são consultados via RAG/embeddi
 #### O parâmetro `$fromAI`
 
 No n8n, `$fromAI` é um recurso que permite que a própria IA decida, dinamicamente, qual valor passar como parâmetro para uma ferramenta (por exemplo, qual nome buscar na query SQL), em vez de esse valor ser fixo no fluxo.
+
+![Fluxo do agente com Vector Store, pronto para receber a ferramenta MySQL](imagens/aula02-fluxo-mysql.png)
 
 ### Passo a passo prático
 
@@ -195,6 +201,8 @@ INSERT INTO funcionarios (nome, email, departamento, cargo, data_admissao, saldo
 2. Preencha host, porta, usuário, senha e nome do banco copiados da Railway.
 3. Teste a conexão para confirmar que o n8n consegue acessar a tabela `funcionarios`.
 
+![Banco de dados MySQL conectado na Railway, com a tabela funcionarios populada](imagens/aula02-banco-railway.png)
+
 #### Etapa 4: Adicionar a ferramenta MySQL ao agente
 
 1. No workflow do agente (criado na Aula 1), adicione uma nova ferramenta do tipo MySQL Tool conectada ao nó do AI Agent.
@@ -231,6 +239,8 @@ IDENTIFICAÇÃO DO FUNCIONÁRIO:
 3. Pergunte algo sobre política geral de RH (não específico de um funcionário) e confirme se o agente usa a base de conhecimento (RAG) para responder.
 4. Teste também com um nome que não existe na tabela, e confirme que o agente não inventa dados — respondendo apenas com base nas políticas gerais.
 
+![Teste real do agente respondendo com dados do MySQL (saldo de férias da Ana Lima)](imagens/aula02-teste-agente.png)
+
 > 💡 **Dica**
 > Trate o System Prompt como a peça mais importante do agente: pequenos ajustes de redação nas regras mudam bastante o comportamento. Refine aos poucos e sempre reteste depois de cada mudança.
 
@@ -253,6 +263,8 @@ Guardrails são filtros inteligentes que limitam o que o agente pode responder o
 #### Session ID / memória por usuário
 
 Para que o agente "lembre" o contexto de cada conversa individualmente, é necessário associar um identificador único (session ID) a cada usuário do Telegram, normalmente baseado no chat ID.
+
+![Fluxo completo do agente conectado ao Telegram Trigger e envio de mensagem](imagens/aula03-fluxo-telegram.png)
 
 ### Passo a passo prático
 
@@ -284,6 +296,8 @@ Para que o agente "lembre" o contexto de cada conversa individualmente, é neces
 1. Ative (publique) o workflow no n8n para que ele rode continuamente, escutando o Webhook do Telegram.
 2. Realize um teste ponta a ponta: identificação do funcionário → consulta de dados reais via MySQL → pergunta geral via RAG → pergunta fora do escopo (guardrail).
 3. Compartilhe o link do bot do Telegram com usuários de teste para validação final.
+
+![Conversa real no Telegram com o HR Buddy: identificação, consulta de férias e política de RH](imagens/aula03-teste-telegram.png)
 
 > ✅ **Resultado esperado**
 > Ao final desta aula, o HR Buddy deve estar disponível 24/7 no Telegram, identificando cada funcionário pelo nome, respondendo com dados reais do MySQL quando aplicável, usando a base de conhecimento (RAG) para dúvidas gerais, mantendo memória individual por conversa e recusando assuntos fora do escopo de RH.
@@ -339,4 +353,4 @@ Esta seção reúne problemas comuns encontrados ao montar esse tipo de agente e
 
 ---
 
-*Documentado por Tatiane Souza*
+*Documentado por Tatiane Santos Souza — Sowza.dev*
