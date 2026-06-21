@@ -1,0 +1,219 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -64,
+        0
+      ],
+      "id": "adcf580c-4981-4411-970f-8d6e4a4b0d61",
+      "name": "When chat message received",
+      "webhookId": "c7e9bba6-a714-4dc3-bde7-7514becf652a"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "\"Você é o HR Buddy, assistente virtual de RH da ChocolaTech.\nREGRAS:\n\nSempre responda em português.\nResponda APENAS dúvidas relacionadas a RH.\nIDENTIFICAÇÃO DO FUNCIONÁRIO:\nSe o usuário não disser quem é, pergunte o nome completo dele logo na primeira mensagem.\nUse a ferramenta MySQL para buscar na tabela funcionarios usando SEMPRE o NOME COMPLETO informado pelo usuário na conversa.\nSe encontrado: use os saldos de férias e banco de horas.\nSe não encontrado: não invente dados pessoais. Responda apenas com base nas políticas gerais de RH do Vector Store.\nUse a base de conhecimento para dúvidas gerais.\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        320,
+        0
+      ],
+      "id": "70fec11e-d812-4e69-9398-064ad31eeb3d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatCohere",
+      "typeVersion": 1,
+      "position": [
+        160,
+        224
+      ],
+      "id": "d4b40b26-90ea-4b78-b652-0cc20379c499",
+      "name": "Cohere Chat Model",
+      "credentials": {
+        "cohereApi": {
+          "id": "PanaktYcKL0AL6hI",
+          "name": "Cohere account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        288,
+        224
+      ],
+      "id": "ebdf5e55-cb4f-4986-b8ea-ef3f1367c8bf",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Busque informações sobre politicas de RH ,férias ,horários e rotinas da empresa CHOCOLATECH.",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        416,
+        224
+      ],
+      "id": "64c61173-1d40-4f8c-8459-59a7f986b724",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {
+        "modelName": "embed-multilingual-v3.0"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        496,
+        432
+      ],
+      "id": "22b0f20e-da08-4116-b07c-88968d950ec9",
+      "name": "Embeddings Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "PanaktYcKL0AL6hI",
+          "name": "Cohere account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "funcionarios",
+          "mode": "list",
+          "cachedResultName": "funcionarios"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "nome",
+              "condition": "LIKE",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', `Sempre use o formato %nome% como % no inicio e no fim para busca parcial.\nExemplo: %João Silva%`, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        704,
+        224
+      ],
+      "id": "fd835130-307a-41ba-a75e-2505e64d98f2",
+      "name": "Select rows from a table in MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "ijX7Ks28aeALVreW",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cohere Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table in MySQL": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "219d2009-2b93-4f8f-97fd-8b1de03693f2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5fd4d92fc099255f62db5c3a377db8b3f7e33dadffc71e14fa9b44c343e12abe"
+  },
+  "nodeGroups": [],
+  "id": "uaCAaBgbUSITum7f",
+  "tags": []
+}

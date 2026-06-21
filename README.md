@@ -2,6 +2,8 @@
 
 Projeto de construção de um **Agente de IA** (HR Buddy) usando ferramentas no-code/low-code, capaz de responder dúvidas de RH combinando uma base de conhecimento (RAG) com dados reais de funcionários em um banco MySQL, com interface via Telegram.
 
+📄 **[Acesse a documentação completa do projeto](documentation.md)** — passo a passo detalhado de toda a Masterclass e das Aulas 1 a 3.
+
 ## 📌 Sobre o projeto
 
 O objetivo é sair do uso de prompts simples e construir um agente que **raciocina, planeja e executa tarefas**, em vez de apenas responder. O HR Buddy é o resultado final: um assistente virtual de RH que:
@@ -13,13 +15,13 @@ O objetivo é sair do uso de prompts simples e construir um agente que **racioci
 
 ## 🛠️ Stack utilizada
 
-| Ferramenta | Função no projeto |
-|---|---|
-| **Cohere** | Modelo de linguagem (LLM) e geração de embeddings |
-| **Railway** | Hospedagem em nuvem (banco de dados MySQL) |
-| **n8n** | Orquestração visual do fluxo do agente (low-code) |
-| **MySQL** | Banco de dados estruturado de funcionários |
-| **Telegram** | Interface de chat com o usuário final |
+| Ferramenta   | Função no projeto                                 |
+| ------------ | ------------------------------------------------- |
+| **Cohere**   | Modelo de linguagem (LLM) e geração de embeddings |
+| **Railway**  | Hospedagem em nuvem (banco de dados MySQL)        |
+| **n8n**      | Orquestração visual do fluxo do agente (low-code) |
+| **MySQL**    | Banco de dados estruturado de funcionários        |
+| **Telegram** | Interface de chat com o usuário final             |
 
 ## 🗂️ Estrutura do conteúdo
 
@@ -35,12 +37,14 @@ O objetivo é sair do uso de prompts simples e construir um agente que **racioci
 4. **Aula 3 — Produto Real (Telegram e Automatização)**
    Conexão do agente ao Telegram via Webhook, implementação de guardrails e memória por usuário (session ID).
 
+   ![Workflow da Aula 3 - Agente conectado ao Telegram](imagens/aula03.png)
+
 ## ⚙️ Pré-requisitos
 
 - Conta na [Cohere](https://cohere.com) com API Key gerada
 - Conta na [Railway](https://railway.com)
 - Bot criado no Telegram via [@BotFather](https://t.me/BotFather), com token salvo
-- Conta no [n8n](https://n8n.io) *(criar apenas no momento indicado na aula)*
+- Conta no [n8n](https://n8n.io) _(criar apenas no momento indicado na aula)_
 
 ## 🗄️ Banco de dados
 
@@ -139,5 +143,5 @@ Resposta enviada de volta ao Telegram
 
 ## 📎 Créditos
 
-Conteúdo baseado na Masterclass e Aulas 1–3 da **ONE | Imersão Agentes de IA**.
-Documentado por **Tatiane Souza **.
+Conteúdo baseado na Masterclass e Aulas 1–3 da **ONE & Alura| Imersão Agentes de IA**.
+Documentado por **Tatiane Souza**.
