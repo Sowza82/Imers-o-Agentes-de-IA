@@ -349,7 +349,22 @@ Esta seção reúne problemas comuns encontrados ao montar esse tipo de agente e
 - Revise periodicamente os guardrails à medida que novos casos de uso forem identificados pelos usuários.
 
 > 🚀 **Próximos passos sugeridos**
-> Após validar o HR Buddy, considere expandir o projeto: adicionar mais documentos à base RAG, criar novas ferramentas (ex.: solicitação de férias diretamente pelo chat) e configurar alertas de erro no n8n para monitorar o agente em produção.
+> Após validar o HR Buddy, considere expandir o projeto com melhorias em cinco frentes principais:
+>
+> - **RAG / Base de Conhecimento**: adicionar metadados aos chunks para filtrar buscas, versionar documentos com data de atualização e criar um fluxo de re-ingestão automática.
+> - **MySQL / Dados**: substituir a identificação por nome completo por ID ou e-mail corporativo (mais confiável), criar uma tabela de solicitações (férias, ajuste de ponto) para o agente registrar pedidos, e uma tabela de auditoria para logar as consultas.
+> - **Segurança e Guardrails**: adicionar autenticação leve via e-mail corporativo, mascarar dados sensíveis nas respostas e aplicar rate limiting por usuário.
+> - **Memória e UX**: definir expiração de sessão, criar um menu inicial com botões no Telegram e configurar fallback para um humano do RH quando o agente não tiver confiança na resposta.
+> - **Operação / Produção**: configurar alertas de falha no n8n, manter um ambiente de staging separado da produção e montar um dashboard simples com métricas de uso.
+
+---
+
+## Sobre esta documentação
+
+Este documento foi escrito e estruturado com o apoio do **Claude (Anthropic)**, com base no conteúdo original das aulas da Imersão Agentes de IA e na execução prática do projeto HR Buddy realizada por Tatiane Souza, incluindo os testes e screenshots dos workflows reais no n8n.
+
+> ⚠️ **Aviso sobre os dados**
+> Todos os dados utilizados neste projeto (funcionários, e-mails, departamentos, saldos de férias, banco de horas, nome da empresa "ChocolaTech") são **fictícios** e foram criados exclusivamente para fins **educacionais**, como parte da Imersão Agentes de IA. Nenhuma informação real de pessoas ou empresas foi utilizada.
 
 ---
 
